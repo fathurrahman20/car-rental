@@ -1,0 +1,53 @@
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 80px 10px 80px;
+  background-color: #F1F3FF !important;
+}
+
+.navbar-section{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hero-container{
+  padding-top:20px;
+  background-color: #F1F3FF;
+}
+
+.hero-content-section{
+  padding: 50px 60px 0px 80px;
+}
+
+.hero-content-section h1{
+  font-weight: 600;
+}
+
+.hero-content-section p{
+  font-weight: 500;
+}
+
+.hero-image-section{
+  padding: 0 !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .hero-content-section{
+    padding: 20px 20px 0 20px;
+  }
+
+  .hero-image-section{
+    margin-top: 20px;
+  }
+  
+  .image-car{
+    width: 98vw;
+    float: right;
+  }
+}
