@@ -42,7 +42,7 @@ export default function SignIn() {
         }
       })
       .catch((e) => {
-        console.info(e);
+        console.log(e);
       });
   }
   return (
