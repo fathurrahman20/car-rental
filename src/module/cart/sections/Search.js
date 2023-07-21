@@ -43,7 +43,8 @@ export default function Search() {
           </Container>
         </section>
       ) : (
-        <CardDetail detailData={detailData} />
+        <CardDetail 
+        detailData={detailData} />
       )}
     </>
   );

@@ -1,3 +1,5 @@
+import { DateRange } from 'react-date-range';
+import { useState } from 'react';
 import {
   Card,
   CardBody,
@@ -8,9 +10,19 @@ import {
   Container,
   List,
   Row,
+  Button,
 } from "reactstrap";
 
-export default function CardDetail({ detailData }) {
+export default function CardDetail({ detailData}) {
+  
+  const [date, setDate] = useState([
+    {
+      startDate: new Date(),
+      endDate: null,
+      key: 'selection'
+    }
+  ]);
+
   const formatToIDR = (idr) => {
     const parsed = idr.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
@@ -127,6 +139,23 @@ export default function CardDetail({ detailData }) {
                 <div className="d-flex justify-content-between fw-bold mt-5 mb-3">
                   <CardText className="text-capitalize">total</CardText>
                   <CardText>{formatToIDR(Number(detailData.price))}</CardText>
+                </div>
+                <div>
+                  <p className="text-secondary">Tentukan lama sewa mobil (max. 7 hari)</p>
+                  <DateRange
+                    editableDateInputs={true}
+                    onChange={item => setDate([item.selection])}
+                    moveRangeOnFirstSelection={false}
+                    ranges={date}
+                    showDateDisplay={true}
+                    />
+                </div>
+                <div>
+                <Button
+                  className="btn btn-success justify-content-center align-self-center w-100"
+                >
+                  Lanjutkan Pembayaran
+                </Button>
                 </div>
               </CardBody>
             </Card>

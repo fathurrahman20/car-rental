@@ -123,7 +123,7 @@ export default function RentForm({
                   </option>
                   <option className="text-black" value="high">
                     {" "}
-                    > Rp.600.000
+                     Rp.600.000
                   </option>
                 </Input>
               </FormGroup>
