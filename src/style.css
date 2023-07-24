@@ -123,8 +123,7 @@ img {
   max-width: 100%;
   height: 100%;
 }
-#mainNav ul {
-}
+
 #mainNav li:nth-child(2) {
   padding: 0 32px;
 }
@@ -737,6 +736,7 @@ width: 1047px;
   }
 }
 
+/* sign in */
 .sign-in-title {
   margin: 2rem 0;
 }
@@ -763,3 +763,61 @@ width: 1047px;
     width: 86%;
   }
 }
+
+/* sign up */
+@media screen and (max-width: 768px){
+.sign-up-rectangle {
+ margin-left: 15px;
+}
+
+.sign-up-title {
+  margin: 2rem 0;
+}
+.sign-up-form p span {
+  text-decoration: underline;
+  font-weight: bolder;
+  color: #0D28A6 !important;
+}
+}
+
+@media screen and (min-width: 768px){
+.form-button, .sign-up-banner {
+  background: #0D28A6 !important;
+}
+.sign-up-title {
+  margin: 2rem 0;
+}
+.form-button {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+.sign-up-form p span {
+  text-decoration: underline;
+  font-weight: bolder;
+  color: #0D28A6 !important;
+}
+}
+
+
+@media screen and (min-width: 768px){
+  .sign-up-section .sign-up-form {
+    max-width: 370px;
+  }
+  .sign-up-image {
+    top: 10%;
+    left: 13%;
+    width: 86%;
+  }
+  .mb-4-text-white-fw-semibold {
+    color: #FFFF;
+  }
+}
+@media screen and (min-width: 768px){
+  .sign-in-banner {
+    display: none;
+  }
+  .close-button {
+    display: none;
+  }
+}
+

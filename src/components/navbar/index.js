@@ -10,6 +10,7 @@ import {
   Offcanvas,
   OffcanvasHeader,
   OffcanvasBody,
+  Button
 } from "reactstrap";
 
 export default function Header(props) {
@@ -45,6 +46,9 @@ export default function Header(props) {
             <NavItem>
               <NavLink href="/#faq/">FAQ</NavLink>
             </NavItem>
+            <Button color="/#Regist/" style= {{ backgroundColor: "Limegreen", color: "white"}}>
+              Register
+            </Button>
           </Nav>
         </Collapse>
         <Offcanvas
