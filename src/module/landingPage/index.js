@@ -6,8 +6,6 @@ import Testimonial from "./sections/Testimonial";
 import Banner from "./sections/Banner";
 import Faq from "./sections/Faq";
 
-
-
 export default function LandingPage() {
     return (
         <Layout>

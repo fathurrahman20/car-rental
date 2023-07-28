@@ -3,6 +3,7 @@ import LandingPage from "../../module/landingPage";
 import CartPage from "../../module/cart";
 import Login from "../../module/login";
 import Registration from "../../module/registration";
+import LoginAdmin from "../../module/loginadmin";
 
 const routerList = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const routerList = createBrowserRouter([
     path: "registration",
     element: <Registration />,
   },
+  {
+    path: "loginadmin",
+    element: <LoginAdmin />,
+  }
 ]);
 
 export default routerList;

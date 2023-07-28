@@ -821,3 +821,39 @@ width: 1047px;
   }
 }
 
+/* admin-login */
+@media screen and (min-width: 520px){
+.bg-login-admin {
+  background: linear-gradient(rgba(13, 40, 166, 0.3), rgba(13, 40, 166, 0.3)),
+    url(../public/img/login-admin.png);
+  background-repeat: no-repeat;
+  background-size: cover !important;
+  width: 1190px;
+}
+@media screen and (min-width: 370px) {
+  .sign-in-admin-form {
+    max-width: 370px;
+  }
+}
+}
+
+@media screen and (max-width: 768px){
+  .sign-in-rectangle {
+    margin: 2rem 0;
+    margin-left: 15px;
+  }
+}
+  @media screen and (max-width: 768px){
+    .bg-login-admin {
+      display: none;
+    }
+    .sign-in-admin-form {
+        max-width: 768px;
+        margin: 2rem 0;
+    }
+  }
+  @media screen and (min-width: 520px){
+    .sign-in-image {
+      display: none;
+    }
+  }
