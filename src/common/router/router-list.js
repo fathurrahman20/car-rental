@@ -3,7 +3,7 @@ import LandingPage from "../../module/landingPage";
 import CartPage from "../../module/cart";
 import Login from "../../module/login";
 import Registration from "../../module/registration";
-import LoginAdmin from "../../module/loginadmin";
+import LoginAdmin from "../../module/admin/login";
 
 const routerList = createBrowserRouter([
   {
