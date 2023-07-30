@@ -10,11 +10,12 @@ import {
   Offcanvas,
   OffcanvasHeader,
   OffcanvasBody,
-  Button
 } from "reactstrap";
+import { Link } from "react-router-dom";
 
 export default function Header(props) {
   const [collapsed, setCollapsed] = useState(false);
+  const tokenCustomer = localStorage.getItem("tokenCustomer");
 
   const toggleNavbar = () => setCollapsed(!collapsed);
 
@@ -35,21 +36,28 @@ export default function Header(props) {
         <Collapse navbar className="navbar-section">
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="/#services/">Our Services</NavLink>
+              <NavLink href="/#services">Our Services</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/#why-us/">Why Us</NavLink>
+              <NavLink href="/#about">Why Us</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/#testimonial/">Testimonial</NavLink>
+              <NavLink href="/#testimonial">Testimonial</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/#faq/">FAQ</NavLink>
+              <NavLink href="/#faq">FAQ</NavLink>
             </NavItem>
-            <Button color="/#Regist/" style= {{ backgroundColor: "Limegreen", color: "white"}}>
-              Register
-            </Button>
           </Nav>
+          {!tokenCustomer && (
+            <p className="my-md-auto">
+              <Link
+                to="/register"
+                className="btn-register text-decoration-none"
+              >
+                Register
+              </Link>
+            </p>
+          )}
         </Collapse>
         <Offcanvas
           toggle={toggleNavbar}
@@ -72,6 +80,18 @@ export default function Header(props) {
               <NavItem>
                 <NavLink href="/#faq">FAQ</NavLink>
               </NavItem>
+              {!tokenCustomer && (
+                <li>
+                  <p className=" my-md-auto mt-2">
+                    <Link
+                      to="/register"
+                      className="btn-register text-decoration-none ms-0"
+                    >
+                      Register
+                    </Link>
+                  </p>
+                </li>
+              )}
             </Nav>
           </OffcanvasBody>
         </Offcanvas>

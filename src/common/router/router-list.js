@@ -19,13 +19,13 @@ const routerList = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "registration",
+    path: "register",
     element: <Registration />,
   },
   {
-    path: "loginadmin",
+    path: "admin/login",
     element: <LoginAdmin />,
-  }
+  },
 ]);
 
 export default routerList;
