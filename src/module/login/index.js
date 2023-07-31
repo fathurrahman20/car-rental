@@ -7,18 +7,17 @@ import {
   Input,
   Label,
   Row,
+  CloseButton,
 } from "reactstrap";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 export default function SignIn() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const [showPassword, setShowPassword] = useState(false);
   const { email, password } = formData;
   const navigate = useNavigate();
   function handleChange(e) {
@@ -51,9 +50,26 @@ export default function SignIn() {
         <Row className="vh-100">
           <Col md={6} className="flex align-self-md-center">
             <div className="sign-in-form ms-md-auto me-md-auto">
-              <img src="/img/login.jpg" alt="sign-in" />
-              <h4 className="fw-bold sign-in-title">Welcome Back!</h4>
-              <Form onSubmit={handleSubmit}>
+              <div className="fw-bold sign-in-rectangle">
+                <img
+                  src="/img/login.jpg"
+                  alt="sign-in"
+                  style={{ marginTop: "29px" }}
+                />
+                {window.innerWidth < 768 && (
+                  <CloseButton
+                    className="close-button"
+                    onClick={() => navigate("/")}
+                    style={{ position: "fixed", top: "30px", right: "10px" }}
+                  />
+                )}
+
+                <h4 className="fw-bold sign-in-title">Welcome Back!</h4>
+              </div>
+              <Form
+                onSubmit={handleSubmit}
+                style={{ backgroundColor: "transparent" }}
+              >
                 <FormGroup>
                   <Label for="email">Email</Label>
                   <Input
@@ -70,26 +86,13 @@ export default function SignIn() {
                   <Input
                     id="password"
                     name="password"
-                    type={showPassword ? "text" : "password"}
+                    type="password"
                     placeholder="6+ karakter"
                     value={password}
                     onChange={handleChange}
                   />
-                  {showPassword ? (
-                    <AiFillEyeInvisible
-                      className="position-absolute"
-                      style={{ left: "30rem", top: "347px" }}
-                      onClick={() => setShowPassword((prevState) => !prevState)}
-                    />
-                  ) : (
-                    <AiFillEye
-                      className="position-absolute"
-                      style={{ left: "30rem", top: "347px" }}
-                      onClick={() => setShowPassword((prevState) => !prevState)}
-                    />
-                  )}
                 </FormGroup>
-                <Button type="submit" className="w-100 form-button ">
+                <Button type="submit" className="w-100 form-button">
                   Sign In
                 </Button>
               </Form>
@@ -100,7 +103,7 @@ export default function SignIn() {
           </Col>
           <Col
             md={6}
-            className="position-relative overflow-hidden sign-in-banner"
+            className="position-relative overflow-hidden sign-in-banner d-none d-md-block"
           >
             <div className="position-absolute sign-in-image overflow-hidden">
               <h3 className="mb-4 text-white fw-semibold">Binar Car Rental</h3>
