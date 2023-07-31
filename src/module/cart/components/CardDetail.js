@@ -1,4 +1,7 @@
-import { DateRange } from 'react-date-range';
+import DateRangeExample from './DateRange';
+import {API} from '../../../common/API'
+import { useNavigate } from "react-router-dom";
+import { addDays, format } from 'date-fns';
 import { useState } from 'react';
 import {
   Card,
@@ -14,15 +17,14 @@ import {
 } from "reactstrap";
 
 export default function CardDetail({ detailData}) {
-  
   const [date, setDate] = useState([
     {
-      startDate: new Date(),
-      endDate: null,
-      key: 'selection'
+    startDate: new Date(),
+    endDate: addDays(new Date(), 7),
+    key: 'selection',
     }
-  ]);
-
+]);
+  const navigate = useNavigate();
   const formatToIDR = (idr) => {
     const parsed = idr.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
@@ -45,6 +47,26 @@ export default function CardDetail({ detailData}) {
     ) {
       return "6 - 8 orang";
     }
+  };
+
+  const handleSubmit = () => {
+
+    const userDate = {
+      start_rent_at: format(date[0].startDate, "yyyy-MM-dd"),
+      finish_rent_at: format(date[0].startDate, "yyyy-MM-dd"),
+      car_id: detailData.id
+    };
+    API.post("customer/order", userDate)
+    .then((response) => {
+      console.log(response.status)
+      if (response.status === 201) {
+        navigate("");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+    console.log(userDate)
   };
   return (
     <section id="cardDetail">
@@ -142,17 +164,14 @@ export default function CardDetail({ detailData}) {
                 </div>
                 <div>
                   <p className="text-secondary">Tentukan lama sewa mobil (max. 7 hari)</p>
-                  <DateRange
-                    editableDateInputs={true}
-                    onChange={item => setDate([item.selection])}
-                    moveRangeOnFirstSelection={false}
-                    ranges={date}
-                    showDateDisplay={true}
-                    />
-                </div>
-                <div>
+                  <DateRangeExample 
+                  date={date}
+                  setDate={setDate}
+                  />
+                </div>                <div>
                 <Button
                   className="btn btn-success justify-content-center align-self-center w-100"
+                  onClick={handleSubmit}
                 >
                   Lanjutkan Pembayaran
                 </Button>
@@ -163,5 +182,5 @@ export default function CardDetail({ detailData}) {
         </Row>
       </Container>
     </section>
-  );
+  )
 }
