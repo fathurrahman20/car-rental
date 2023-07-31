@@ -28,6 +28,27 @@ export const postToAPIRegister = (data) => async () => {
     });
 };
 
+export const postToAPILogin = (data) => async () => {
+  const form = JSON.stringify({
+    email: data.email,
+    password: data.password,
+  });
+
+  await API.post("customer/auth/login", form)
+    .then((response) => {
+      localStorage.setItem("tokenCustomer", response.data.access_token);
+      if (response.status === 201) {
+        toast.success("Login Berhasil");
+        setTimeout(() => {
+          window.location.assign("/");
+        }, 800);
+      }
+    })
+    .catch((e) => {
+      toast.error(e.data.message);
+    });
+};
+
 export const postToAPILoginAdmin = (data) => async () => {
   const form = JSON.stringify({
     email: data.email,
