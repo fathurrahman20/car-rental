@@ -100,19 +100,19 @@ select.opt option:hover {
   [href="/#about"] {
     margin-left: 0 !important;
   }
-  .btn-register {
+  .btn-navbar {
     padding-left: 0 !important;
   }
 }
 
-.btn-register {
+.btn-navbar {
   margin-left: 32px !important;
-  padding: 6px 10px !important;
+  padding: 8px 12px !important;
   background: #5cb85f !important;
-  border-radius: 2px;
+  border-radius: 0;
   color: white !important;
 }
-.btn-register:hover {
+.btn-navbar:hover {
   background: #408643 !important;
 }
 
@@ -174,7 +174,7 @@ img {
   color: #000;
 }
 
-.nav-link:hover:not(.btn-register) {
+.nav-link:hover:not(.btn-navbar) {
   color: #0d28a6 !important;
 }
 

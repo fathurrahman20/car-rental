@@ -9,7 +9,7 @@ import {
   Row,
   CloseButton,
 } from "reactstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { connect } from "react-redux";
@@ -19,10 +19,17 @@ function SignIn(props) {
   const [showPassword, setShowPassword] = useState(false);
   const { email, password } = props.data.form;
   const navigate = useNavigate();
+  const tokenCustomer = localStorage.getItem("tokenCustomer");
+
+  useEffect(() => {
+    if (tokenCustomer) navigate("/");
+  });
+
   function handleSubmit(e) {
     e.preventDefault();
     props.postAPILogin(props.data.form);
   }
+
   return (
     <>
       <Container fluid className="sign-in-section">

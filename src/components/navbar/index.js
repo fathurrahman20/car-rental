@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Button,
   Collapse,
   Navbar,
   NavbarToggler,
@@ -11,13 +12,19 @@ import {
   OffcanvasHeader,
   OffcanvasBody,
 } from "reactstrap";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Header(props) {
   const [collapsed, setCollapsed] = useState(false);
   const tokenCustomer = localStorage.getItem("tokenCustomer");
+  const navigate = useNavigate();
 
   const toggleNavbar = () => setCollapsed(!collapsed);
+
+  function handleLogout() {
+    localStorage.removeItem("tokenCustomer");
+    navigate("/login");
+  }
 
   return (
     <>
@@ -48,15 +55,25 @@ export default function Header(props) {
               <NavLink href="/#faq">FAQ</NavLink>
             </NavItem>
           </Nav>
-          {!tokenCustomer && (
-            <p className="my-md-auto">
-              <Link
-                to="/register"
-                className="btn-register text-decoration-none"
+          {tokenCustomer ? (
+            <Button className="btn-navbar border-0" onClick={handleLogout}>
+              Logout
+            </Button>
+          ) : (
+            <>
+              <Button
+                className="btn-navbar border-0"
+                onClick={() => navigate("/register")}
               >
                 Register
-              </Link>
-            </p>
+              </Button>
+              <Button
+                className="btn-navbar border-0"
+                onClick={() => navigate("/admin")}
+              >
+                Admin
+              </Button>
+            </>
           )}
         </Collapse>
         <Offcanvas
@@ -71,7 +88,7 @@ export default function Header(props) {
               <NavItem>
                 <NavLink href="/#services">Our Services</NavLink>
               </NavItem>
-              <NavItem>
+              <NavItem style={{ marginLeft: "-32px" }}>
                 <NavLink href="/#about">Why Us</NavLink>
               </NavItem>
               <NavItem>
@@ -80,17 +97,34 @@ export default function Header(props) {
               <NavItem>
                 <NavLink href="/#faq">FAQ</NavLink>
               </NavItem>
-              {!tokenCustomer && (
-                <li>
-                  <p className=" my-md-auto mt-2">
-                    <Link
-                      to="/register"
-                      className="btn-register text-decoration-none ms-0"
+              {tokenCustomer ? (
+                <li className="mt-2" style={{ marginLeft: "-32px" }}>
+                  <Button
+                    className="btn-navbar border-0"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </Button>
+                </li>
+              ) : (
+                <>
+                  <li className="mt-2" style={{ marginLeft: "-32px" }}>
+                    <Button
+                      className="btn-navbar border-0"
+                      onClick={() => navigate("/register")}
                     >
                       Register
-                    </Link>
-                  </p>
-                </li>
+                    </Button>
+                  </li>
+                  <li className="mt-3" style={{ marginLeft: "-32px" }}>
+                    <Button
+                      className="btn-navbar border-0"
+                      onClick={() => navigate("/admin")}
+                    >
+                      Admin
+                    </Button>
+                  </li>
+                </>
               )}
             </Nav>
           </OffcanvasBody>
