@@ -8,13 +8,13 @@ import {
   Input,
   Label,
   Row,
-} from "reactstrap";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { connect } from "react-redux";
-import { postToAPIRegister, setForm } from "../../common/redux/actions/user";
-import { toast } from "react-toastify";
+} from 'reactstrap';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { connect } from 'react-redux';
+import { postToAPIRegister, setForm } from '../../common/redux/actions/user';
+import { toast } from 'react-toastify';
 
 function SignUp(props) {
   const [showPassword, setShowPassword] = useState(false);
@@ -24,7 +24,7 @@ function SignUp(props) {
   function handleSubmit(e) {
     e.preventDefault();
     if (password.length <= 5) {
-      return toast.error("Minimal password harus terdiri dari 6 karakter");
+      return toast.error('Minimal password harus terdiri dari 6 karakter');
     }
     props.postAPIRegister(props.data.form);
   }
@@ -39,14 +39,8 @@ function SignUp(props) {
                 <img src="/img/Rectangle.png" alt="sign-up" />
                 <h4 className="fw-bold sign-up-title">Sign Up</h4>
               </div>
-              <CloseButton
-                className="close-button"
-                onClick={() => navigate("/")}
-              />
-              <Form
-                onSubmit={handleSubmit}
-                style={{ backgroundColor: "transparent" }}
-              >
+              <CloseButton className="close-button" onClick={() => navigate('/')} />
+              <Form onSubmit={handleSubmit} style={{ backgroundColor: 'transparent' }}>
                 <FormGroup xs={12} md={6}>
                   <Label for="username">Name*</Label>
                   <Input
@@ -56,7 +50,7 @@ function SignUp(props) {
                     placeholder="Nama Lengkap"
                     required
                     value={name}
-                    onChange={(e) => props.setform("name", e.target.value)}
+                    onChange={e => props.setform('name', e.target.value)}
                   />
                 </FormGroup>
                 <FormGroup xs={12} md={6}>
@@ -68,7 +62,7 @@ function SignUp(props) {
                     placeholder="Contoh: johndee@gmail.com"
                     required
                     value={email}
-                    onChange={(e) => props.setform("email", e.target.value)}
+                    onChange={e => props.setform('email', e.target.value)}
                   />
                 </FormGroup>
                 <FormGroup xs={12} md={6} className="position-relative">
@@ -76,23 +70,23 @@ function SignUp(props) {
                   <Input
                     id="password"
                     name="password"
-                    type={showPassword ? "text" : "password"}
+                    type={showPassword ? 'text' : 'password'}
                     placeholder="6+ karakter"
                     required
                     value={password}
-                    onChange={(e) => props.setform("password", e.target.value)}
+                    onChange={e => props.setform('password', e.target.value)}
                   />
                   {showPassword ? (
                     <AiFillEyeInvisible
                       className="position-absolute"
-                      style={{ right: "5", bottom: "7" }}
-                      onClick={() => setShowPassword((prevState) => !prevState)}
+                      style={{ right: '5', bottom: '7' }}
+                      onClick={() => setShowPassword(prevState => !prevState)}
                     />
                   ) : (
                     <AiFillEye
                       className="position-absolute"
-                      style={{ right: "5", bottom: "7" }}
-                      onClick={() => setShowPassword((prevState) => !prevState)}
+                      style={{ right: '5', bottom: '7' }}
+                      onClick={() => setShowPassword(prevState => !prevState)}
                     />
                   )}
                 </FormGroup>
@@ -101,7 +95,7 @@ function SignUp(props) {
                 </Button>
               </Form>
               <p className="text-center">
-                Already have an account?{" "}
+                Already have an account?{' '}
                 <span>
                   <Link to="/login">Sign In here</Link>
                 </span>
@@ -124,14 +118,14 @@ function SignUp(props) {
   );
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     setform: (formType, formValue) => dispatch(setForm(formType, formValue)),
-    postAPIRegister: (data) => dispatch(postToAPIRegister(data)),
+    postAPIRegister: data => dispatch(postToAPIRegister(data)),
   };
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   data: state.users,
 });
 

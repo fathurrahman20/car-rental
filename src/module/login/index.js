@@ -8,21 +8,21 @@ import {
   Label,
   Row,
   CloseButton,
-} from "reactstrap";
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { connect } from "react-redux";
-import { postToAPILogin, setForm } from "../../common/redux/actions/user";
+} from 'reactstrap';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { connect } from 'react-redux';
+import { postToAPILogin, setForm } from '../../common/redux/actions/user';
 
 function SignIn(props) {
   const [showPassword, setShowPassword] = useState(false);
   const { email, password } = props.data.form;
   const navigate = useNavigate();
-  const tokenCustomer = localStorage.getItem("tokenCustomer");
+  const tokenCustomer = localStorage.getItem('tokenCustomer');
 
   useEffect(() => {
-    if (tokenCustomer) navigate("/");
+    if (tokenCustomer) navigate('/');
   });
 
   function handleSubmit(e) {
@@ -43,14 +43,11 @@ function SignIn(props) {
               {window.innerWidth < 768 && (
                 <CloseButton
                   className="close-button"
-                  onClick={() => navigate("/")}
-                  style={{ position: "absolute", top: "30px", right: "10px" }}
+                  onClick={() => navigate('/')}
+                  style={{ position: 'absolute', top: '30px', right: '10px' }}
                 />
               )}
-              <Form
-                onSubmit={handleSubmit}
-                style={{ backgroundColor: "transparent" }}
-              >
+              <Form onSubmit={handleSubmit} style={{ backgroundColor: 'transparent' }}>
                 <FormGroup>
                   <Label for="email">Email</Label>
                   <Input
@@ -59,7 +56,7 @@ function SignIn(props) {
                     type="email"
                     placeholder="Contoh: johndee@gmail.com"
                     value={email}
-                    onChange={(e) => props.setform("email", e.target.value)}
+                    onChange={e => props.setform('email', e.target.value)}
                   />
                 </FormGroup>
                 <FormGroup className="position-relative">
@@ -67,22 +64,22 @@ function SignIn(props) {
                   <Input
                     id="password"
                     name="password"
-                    type={showPassword ? "text" : "password"}
+                    type={showPassword ? 'text' : 'password'}
                     placeholder="6+ karakter"
                     value={password}
-                    onChange={(e) => props.setform("password", e.target.value)}
+                    onChange={e => props.setform('password', e.target.value)}
                   />
                   {showPassword ? (
                     <AiFillEyeInvisible
                       className="position-absolute"
-                      style={{ right: "5", bottom: "7" }}
-                      onClick={() => setShowPassword((prevState) => !prevState)}
+                      style={{ right: '5', bottom: '7' }}
+                      onClick={() => setShowPassword(prevState => !prevState)}
                     />
                   ) : (
                     <AiFillEye
                       className="position-absolute"
-                      style={{ right: "5", bottom: "7" }}
-                      onClick={() => setShowPassword((prevState) => !prevState)}
+                      style={{ right: '5', bottom: '7' }}
+                      onClick={() => setShowPassword(prevState => !prevState)}
                     />
                   )}
                 </FormGroup>
@@ -91,7 +88,7 @@ function SignIn(props) {
                 </Button>
               </Form>
               <p className="text-center">
-                Don't have an account?{" "}
+                Don&apos;t have an account?{' '}
                 <span>
                   <Link to="/register">Sign Up for free</Link>
                 </span>
@@ -113,14 +110,14 @@ function SignIn(props) {
   );
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     setform: (formType, formValue) => dispatch(setForm(formType, formValue)),
-    postAPILogin: (data) => dispatch(postToAPILogin(data)),
+    postAPILogin: data => dispatch(postToAPILogin(data)),
   };
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   data: state.users,
 });
 

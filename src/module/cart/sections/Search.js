@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Container, Row } from "reactstrap";
-import ListCard from "../components/ListCard";
-import CardDetail from "../components/CardDetail";
-import RentForm from "../components/RentForm";
+import { useState } from 'react';
+import { Container, Row } from 'reactstrap';
+import ListCard from '../components/ListCard';
+import CardDetail from '../components/CardDetail';
+import RentForm from '../components/RentForm';
 
 export default function Search() {
   const [data, setData] = useState([]);
@@ -25,7 +25,7 @@ export default function Search() {
         <section id="cardResult">
           <Container className="container">
             <Row className="row justify-content-center">
-              {data.map((car) => {
+              {data.map(car => {
                 return (
                   <ListCard
                     key={car.id}
@@ -43,8 +43,7 @@ export default function Search() {
           </Container>
         </section>
       ) : (
-        <CardDetail 
-        detailData={detailData} />
+        <CardDetail detailData={detailData} />
       )}
     </>
   );

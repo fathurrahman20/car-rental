@@ -1,20 +1,8 @@
-import { useState } from "react";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import {
-  Button,
-  Col,
-  Container,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-  Row,
-} from "reactstrap";
-import { connect } from "react-redux";
-import {
-  postToAPILoginAdmin,
-  setForm,
-} from "../../../common/redux/actions/user";
+import { useState } from 'react';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { Button, Col, Container, Form, FormGroup, Input, Label, Row } from 'reactstrap';
+import { connect } from 'react-redux';
+import { postToAPILoginAdmin, setForm } from '../../../common/redux/actions/user';
 
 function LoginAdmin(props) {
   const [showPassword, setShowPassword] = useState(false);
@@ -35,10 +23,7 @@ function LoginAdmin(props) {
                 <h4 className="fw-bold sign-in-title">Welcome, Admin BCR</h4>
               </div>
               <div className="form">
-                <Form
-                  onSubmit={handleSubmit}
-                  style={{ backgroundColor: "transparent" }}
-                >
+                <Form onSubmit={handleSubmit} style={{ backgroundColor: 'transparent' }}>
                   <FormGroup>
                     <Label for="email">Email</Label>
                     <Input
@@ -48,7 +33,7 @@ function LoginAdmin(props) {
                       placeholder="Contoh: johndee@gmail.com"
                       required
                       value={email}
-                      onChange={(e) => props.setform("email", e.target.value)}
+                      onChange={e => props.setform('email', e.target.value)}
                     />
                   </FormGroup>
                   <FormGroup className="position-relative">
@@ -56,29 +41,23 @@ function LoginAdmin(props) {
                     <Input
                       id="password"
                       name="password"
-                      type={showPassword ? "text" : "password"}
+                      type={showPassword ? 'text' : 'password'}
                       placeholder="6+ karakter"
                       required
                       value={password}
-                      onChange={(e) =>
-                        props.setform("password", e.target.value)
-                      }
+                      onChange={e => props.setform('password', e.target.value)}
                     />
                     {showPassword ? (
                       <AiFillEyeInvisible
                         className="position-absolute"
-                        style={{ right: "5", bottom: "6" }}
-                        onClick={() =>
-                          setShowPassword((prevState) => !prevState)
-                        }
+                        style={{ right: '5', bottom: '6' }}
+                        onClick={() => setShowPassword(prevState => !prevState)}
                       />
                     ) : (
                       <AiFillEye
                         className="position-absolute"
-                        style={{ right: "5", bottom: "6" }}
-                        onClick={() =>
-                          setShowPassword((prevState) => !prevState)
-                        }
+                        style={{ right: '5', bottom: '6' }}
+                        onClick={() => setShowPassword(prevState => !prevState)}
                       />
                     )}
                   </FormGroup>
@@ -95,14 +74,14 @@ function LoginAdmin(props) {
   );
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     setform: (formType, formValue) => dispatch(setForm(formType, formValue)),
-    postAPILoginAdmin: (data) => dispatch(postToAPILoginAdmin(data)),
+    postAPILoginAdmin: data => dispatch(postToAPILoginAdmin(data)),
   };
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   data: state.users,
 });
 

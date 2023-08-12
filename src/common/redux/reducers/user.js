@@ -1,10 +1,10 @@
-import * as actionType from "../actionsType/user";
+import * as actionType from '../actionsType/user';
 
 const initialState = {
   form: {
-    name: "",
-    email: "",
-    password: "",
+    name: '',
+    email: '',
+    password: '',
   },
 };
 

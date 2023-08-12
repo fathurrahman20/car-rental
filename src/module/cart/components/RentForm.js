@@ -1,58 +1,44 @@
-import {
-  Button,
-  Col,
-  Container,
-  FormGroup,
-  Input,
-  Label,
-  Row,
-  Form,
-} from "reactstrap";
-import { API } from "../../../common/API";
-import { useState } from "react";
+import { Button, Col, Container, FormGroup, Input, Label, Row, Form } from 'reactstrap';
+import { API } from '../../../common/API';
+import { useState } from 'react';
 
-export default function RentForm({
-  isClick,
-  setIsClick,
-  setData,
-  setIsLoading,
-}) {
-  const [nameCar, setNameCar] = useState("");
-  const [category, setCategory] = useState("");
+export default function RentForm({ isClick, setIsClick, setData, setIsLoading }) {
+  const [nameCar, setNameCar] = useState('');
+  const [category, setCategory] = useState('');
   const [isRented, setIsRented] = useState(false);
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const fetchData = () => {
     const params = `name=${nameCar}&category=${category}&isRented=${isRented}&${mappingPrice(
-      price
+      price,
     )}`;
     API.get(`admin/v2/car?${params}&page=1&pageSize=10`)
-      .then((res) => {
+      .then(res => {
         setData(res.data.cars);
       })
-      .catch((err) => {
-        console.log("err:", err);
+      .catch(err => {
+        console.log('err:', err);
       })
       .finally(() => {
         setIsLoading(false);
       });
   };
 
-  const mappingPrice = (price) => {
+  const mappingPrice = price => {
     switch (price) {
-      case "low":
-        return "minPrice=0&maxPrice=400000";
-      case "medium":
-        return "minPrice=400000&maxPrice=600000";
-      case "high":
-        return "minPrice=600000&maxPrice=1000000";
+      case 'low':
+        return 'minPrice=0&maxPrice=400000';
+      case 'medium':
+        return 'minPrice=400000&maxPrice=600000';
+      case 'high':
+        return 'minPrice=600000&maxPrice=1000000';
       default:
-        return "";
+        return '';
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     setIsSubmitted(true);
     setIsLoading(true);
@@ -77,7 +63,7 @@ export default function RentForm({
                   aria-describedby="emailHelp"
                   placeholder="Ketik nama/tipe mobil"
                   width="208"
-                  onChange={(e) => setNameCar(e.target.value)}
+                  onChange={e => setNameCar(e.target.value)}
                 />
               </FormGroup>
               <FormGroup className="my-3 input-grup align-content-center justify-content-center">
@@ -89,7 +75,7 @@ export default function RentForm({
                   id="kapasitas"
                   className="form-select text-secondary"
                   disabled={isSubmitted}
-                  onChange={(e) => setCategory(e.target.value)}
+                  onChange={e => setCategory(e.target.value)}
                 >
                   <option hidden>Masukkan Kapasitas Mobil</option>
                   <option className="text-black" value="small">
@@ -112,7 +98,7 @@ export default function RentForm({
                   id="harga"
                   className="form-select text-secondary"
                   disabled={isSubmitted}
-                  onChange={(e) => setPrice(e.target.value)}
+                  onChange={e => setPrice(e.target.value)}
                 >
                   <option hidden>Masukkan harga sewa per hari</option>
                   <option className="text-black" value="low">
@@ -122,8 +108,8 @@ export default function RentForm({
                     Rp. 400.000 - Rp.600.000
                   </option>
                   <option className="text-black" value="high">
-                    {" "}
-                     Rp.600.000
+                    {' '}
+                    Rp.600.000
                   </option>
                 </Input>
               </FormGroup>
@@ -136,7 +122,7 @@ export default function RentForm({
                   id="status"
                   className="form-select text-secondary"
                   disabled={isSubmitted}
-                  onChange={(e) => setIsRented(e.target.value)}
+                  onChange={e => setIsRented(e.target.value)}
                 >
                   <option className="text-black" value={true}>
                     Disewa
@@ -147,7 +133,7 @@ export default function RentForm({
                 </Input>
               </FormGroup>
               {isClick ? (
-                ""
+                ''
               ) : isSubmitted ? (
                 <Button
                   type="submit"
@@ -161,10 +147,7 @@ export default function RentForm({
                   Edit
                 </Button>
               ) : (
-                <Button
-                  onClick={handleSubmit}
-                  className="btn btn-primary align-self-center"
-                >
+                <Button onClick={handleSubmit} className="btn btn-primary align-self-center">
                   Cari Mobil
                 </Button>
               )}

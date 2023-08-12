@@ -1,1 +1,1 @@
-export const SET_FORM = "customer/SET_FORM";
+export const SET_FORM = 'customer/SET_FORM';

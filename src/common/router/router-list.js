@@ -1,29 +1,29 @@
-import { createBrowserRouter } from "react-router-dom";
-import LandingPage from "../../module/landingPage";
-import CartPage from "../../module/cart";
-import Login from "../../module/login";
-import Registration from "../../module/registration";
-import LoginAdmin from "../../module/admin/login";
+import { createBrowserRouter } from 'react-router-dom';
+import LandingPage from '../../module/landingPage';
+import CartPage from '../../module/cart';
+import Login from '../../module/login';
+import Registration from '../../module/registration';
+import LoginAdmin from '../../module/admin/login';
 
 const routerList = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <LandingPage />,
   },
   {
-    path: "cart",
+    path: 'cart',
     element: <CartPage />,
   },
   {
-    path: "login",
+    path: 'login',
     element: <Login />,
   },
   {
-    path: "register",
+    path: 'register',
     element: <Registration />,
   },
   {
-    path: "admin/login",
+    path: 'admin/login',
     element: <LoginAdmin />,
   },
 ]);
