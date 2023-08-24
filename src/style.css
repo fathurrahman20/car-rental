@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap');
 
 body {
   font-family: Arial, Helvetica, sans-serif !important;
@@ -87,17 +87,17 @@ select.opt option:hover {
   margin-bottom: 50px;
 }
 
-[href="/#about"] {
+[href='/#about'] {
   padding-left: 32px !important;
   padding-right: 32px !important;
 }
 
-[href="/#testimonial"] {
+[href='/#testimonial'] {
   padding-right: 32px !important;
 }
 
 @media only screen and (max-width: 768px) {
-  [href="/#about"] {
+  [href='/#about'] {
     margin-left: 0 !important;
   }
   .btn-navbar {
@@ -659,7 +659,7 @@ img {
 
 #formSewa label {
   color: #3c3c3c !important;
-  font-family: "Rubik", sans-serif;
+  font-family: 'Rubik', sans-serif;
 }
 
 label,
@@ -804,7 +804,7 @@ select {
   transform: scale(1.01);
 }
 
-img[src*="/img/no-image.png"] {
+img[src*='/img/no-image.png'] {
   width: 50% !important;
   margin-left: auto;
   margin-right: auto;
@@ -1096,3 +1096,114 @@ img[src*="/img/no-image.png"] {
     margin: 2rem 0;
   }
 }
+
+/* Payment */
+/*payment breadcrumb*/
+.container-breadcrumb {
+  background: #f8f9fa;
+  margin-top: 3.7rem;
+  height: 12.5rem;
+}
+@media screen and (min-width: 769px) {
+  .row-breadcrumb {
+    padding-left: 6rem;
+    padding-right: 6rem;
+    padding-top: 4rem;
+  }
+}
+.btn-back {
+  /* width: 20% !important; */
+}
+.payment-line {
+  width: 10%;
+}
+/*end payment breadcrumb*/
+
+/*Payment Detail Order*/
+@media screen and (min-width: 769px) {
+  .detail-order {
+    top: 190px;
+    left: 110px;
+  }
+  .detail-order-title {
+    margin-left: 42px;
+  }
+  .detail-order-col-body {
+    gap: 90px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .detail-order {
+    top: 125px;
+  }
+}
+.detail-order-title {
+  font-size: 14px;
+}
+.detail-order-col {
+  border: 0 solid #8a8a8a;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+  padding: 24px;
+}
+/*End Container Detail Order*/
+
+/*Detail Order Body*/
+.detail-order-body {
+  margin-top: 6rem;
+  margin-bottom: 15rem;
+}
+.list-bank-col {
+  height: 335px;
+  top: 352px;
+  left: 199px;
+  border-radius: 8px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 1);
+}
+.detail-order-body .payment-title {
+  font-size: 14px;
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+.detail-order-body .payment-option {
+  font-size: 12px;
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+.detail-order-body hr {
+  width: 95%;
+}
+.detail-order-body hr:last-child {
+  width: 95%;
+  padding-bottom: 10px;
+}
+.detail-order-body .detail-invoice {
+  height: max-content;
+  top: 352px;
+  left: 836px;
+  border-radius: 8px;
+  padding-right: 1rem;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 1);
+}
+.detail-invoice-car-category {
+  margin-top: 24px;
+  margin-left: 15px;
+}
+.detail-invoice-car-category h6 {
+  font-size: 14px;
+  color: #000;
+}
+.detail-invoice-car-category .text-muted {
+  font-size: 12px;
+}
+/*End Detail Order Body*/
+/*End Payment*/
+
+/* BreadcrumbComp */
+.previous-payment:hover {
+  cursor: pointer;
+}
+/* End BreadcrumbComp */
