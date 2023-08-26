@@ -6,6 +6,7 @@ import Registration from 'src/module/registration';
 import LoginAdmin from 'src/module/admin/login';
 import Payment from 'src/module/payment';
 import PaymentDetail from 'src/module/payment/pages/PaymentDetail';
+import Etiket from 'src/module/etiket';
 
 const routerList = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const routerList = createBrowserRouter([
   {
     path: 'cart/payment-detail/:id',
     element: <PaymentDetail />,
+  },
+  {
+    path: 'e-tiket',
+    element: <Etiket />,
   },
 ]);
 

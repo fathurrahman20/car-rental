@@ -40,3 +40,58 @@
     transform: rotate(360deg);
   }
 }
+
+.pdf-frame {
+  position: relative;
+}
+
+.download-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.vertical-space {
+  margin-top: 150px;
+}
+
+.container-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.breadcrumb-back-container {
+  display: flex;
+  align-items: center;
+  padding: 1%;
+}
+
+.breadcrumb-back-container h6 {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+.breadcrumb-back-container p {
+  font-size: 12px;
+}
+
+.breadcrumb-back-container .container {
+  flex: 1;
+  margin-left: 10px;
+}
+
+.breadcrumb-container {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-icon {
+  margin-right: 5px;
+}

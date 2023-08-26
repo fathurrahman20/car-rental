@@ -35,6 +35,7 @@ export default function Header() {
         expand="md"
         fixed="top"
         id="navbar"
+        style={{ backgroundColor: "#F1F3FF" }} 
       >
         <NavbarBrand href="/">
           <img src="/img/logo.svg" alt="logo BCR" />

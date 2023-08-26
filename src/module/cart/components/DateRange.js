@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { DateRange } from 'react-date-range';
-import { addDays } from 'date-fns';
+import { addDays } from 'date-fns'
 import format from 'date-fns/format';
 import { Button, Label, Input } from 'reactstrap';
 

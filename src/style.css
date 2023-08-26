@@ -1207,3 +1207,22 @@ img[src*='/img/no-image.png'] {
   cursor: pointer;
 }
 /* End BreadcrumbComp */
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.title-etiket {
+  align-items: center;
+}
+.sub-title-etiket {
+  color: #8a8a8a;
+  justify-content: center;
+}
+.container-wrapper {
+  display: flex;
+  justify-content: center;
+}
