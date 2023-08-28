@@ -6,6 +6,7 @@ import { API } from '../../common/API';
 import BreadcrumbComp from './components/BreadcrumbComp';
 import PaymentTopContent from './components/PaymentTopContent';
 import PaymentBodyContent from './components/PaymentBodyContent';
+import { toast } from 'react-toastify';
 
 export default function Payment() {
   const matches = useMatches();
@@ -29,7 +30,7 @@ export default function Payment() {
           const data = res.data;
           setDataOrder(data);
         })
-        .catch(e => console.log(e));
+        .catch(e => toast.error(e));
     }
     getOrderById();
   }, [matches, navigate]);

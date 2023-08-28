@@ -15,6 +15,7 @@ import {
   Row,
   Button,
 } from 'reactstrap';
+import { toast } from 'react-toastify';
 
 export default function CardDetail({ detailData }) {
   const [date, setDate] = useState([
@@ -42,23 +43,39 @@ export default function CardDetail({ detailData }) {
   };
 
   const handleSubmit = () => {
-    const userDate = {
+    const token = localStorage.getItem('tokenCustomer');
+    const dataUser = {
       start_rent_at: format(date[0].startDate, 'yyyy-MM-dd'),
-      finish_rent_at: format(date[0].startDate, 'yyyy-MM-dd'),
+      finish_rent_at: format(date[0].endDate, 'yyyy-MM-dd'),
       car_id: detailData.id,
     };
-    API.post('customer/order', userDate)
-      .then(response => {
-        console.log(response.status);
-        if (response.status === 201) {
-          navigate('');
-        }
-      })
-      .catch(error => {
-        console.error(error);
-      });
-    console.log(userDate);
+
+    // Selisih waktu
+    const startDate = new Date(dataUser.start_rent_at);
+    const finishDate = new Date(dataUser.finish_rent_at);
+
+    const differenceInTime = finishDate.getTime() - startDate.getTime();
+    const differenceInDays = differenceInTime / (1000 * 3600 * 24);
+
+    if (!token) {
+      return toast.error('Silakan login terlebih dahulu.');
+    }
+
+    if (differenceInDays < 7) {
+      API.post('customer/order', dataUser, token)
+        .then(response => {
+          if (response.status === 201) {
+            navigate(`payment/${response.data.id}`);
+          }
+        })
+        .catch(error => {
+          toast.error(error);
+        });
+    } else {
+      return toast.error('Maksimal sewa 7 hari');
+    }
   };
+
   return (
     <section id="cardDetail">
       <Container className="container">

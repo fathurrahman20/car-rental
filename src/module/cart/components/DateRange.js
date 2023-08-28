@@ -1,26 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
 import { DateRange } from 'react-date-range';
-import { addDays } from 'date-fns'
+import { addDays } from 'date-fns';
 import format from 'date-fns/format';
 import { Button, Label, Input } from 'reactstrap';
 
 const DateRangeExample = ({ date, setDate }) => {
   const [open, setOpen] = useState(false);
   const refOne = useRef(null);
-  // const [date, setDate] = useState([
-  //         {
-  //         startDate: new Date(),
-  //         endDate: addDays(new Date(), 7),
-  //         key: 'selection',
-  //         }
-  //     ]);
   useEffect(() => {
     document.addEventListener('keydown', hideOnEscape, true);
     document.addEventListener('click', hideOnCLickOutside, true);
   }, []);
 
   const hideOnEscape = e => {
-    console.log(e.key);
     if (e.key === 'Escape') {
       setOpen(false);
     }

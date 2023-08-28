@@ -38,7 +38,7 @@ const routerList = createBrowserRouter([
     element: <PaymentDetail />,
   },
   {
-    path: 'e-tiket',
+    path: 'e-ticket',
     element: <Etiket />,
   },
 ]);

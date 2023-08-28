@@ -1,6 +1,7 @@
 import { Button, Col, Container, FormGroup, Input, Label, Row, Form } from 'reactstrap';
 import { API } from '../../../common/API';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 export default function RentForm({ isClick, setIsClick, setData, setIsLoading }) {
   const [nameCar, setNameCar] = useState('');
@@ -13,12 +14,12 @@ export default function RentForm({ isClick, setIsClick, setData, setIsLoading })
     const params = `name=${nameCar}&category=${category}&isRented=${isRented}&${mappingPrice(
       price,
     )}`;
-    API.get(`admin/v2/car?${params}&page=1&pageSize=10`)
+    API.get(`customer/v2/car?${params}&page=1&pageSize=10`)
       .then(res => {
         setData(res.data.cars);
       })
       .catch(err => {
-        console.log('err:', err);
+        toast.error(err);
       })
       .finally(() => {
         setIsLoading(false);

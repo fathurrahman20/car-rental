@@ -8,6 +8,7 @@ import React from 'react';
 import { API } from 'src/common/API';
 import PaymentDetailLeftBody from 'src/module/payment/components/PaymentDetailLeftBody';
 import PaymentDetailRightBody from 'src/module/payment/components/PaymentDetailRightBody';
+import { toast } from 'react-toastify';
 
 export default function PaymentDetail() {
   const { state } = useLocation();
@@ -28,7 +29,7 @@ export default function PaymentDetail() {
           const data = res.data;
           setDataOrder(data);
         })
-        .catch(e => console.log(e));
+        .catch(e => toast.error(e));
     }
     getOrderById();
   }, [matches, navigate]);

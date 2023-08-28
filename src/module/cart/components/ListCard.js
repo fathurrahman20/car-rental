@@ -1,14 +1,15 @@
+import { toast } from 'react-toastify';
 import { API } from '../../../common/API';
 import { Button, Card, CardBody, CardSubtitle, CardText, CardTitle, Col } from 'reactstrap';
 
 export default function ListCard({ id, name, image, price, setIsClick, setDetailData }) {
   const fetchDataDetail = id => {
-    API.get(`admin/car/${id}`)
+    API.get(`customer/car/${id}`)
       .then(res => {
         setDetailData(res.data);
       })
       .catch(err => {
-        console.log('err:', err);
+        toast.error(err);
       });
   };
 
@@ -24,9 +25,12 @@ export default function ListCard({ id, name, image, price, setIsClick, setDetail
   };
   return (
     <Col md={4} className="col-md-4 m-0 p-0">
-      <Card className="card card-result border-1" style={{ width: '21rem' }}>
-        {/*{image?<img src={image} className="card-img-top" alt={name}/>: `${name}`}*/}
-        <img src={image ?? '/img/no-image.png'} className="card-img-top" alt={name} />
+      <Card className="card card-result border-1" style={{ width: '21rem', height: '28rem' }}>
+        <img
+          src={image ?? '/img/no-image.png'}
+          className="card-img-top object-fit-cover"
+          alt={name}
+        />
         <CardBody className="card-body">
           <CardTitle className="card-type text-capitalize">{name}</CardTitle>
           <CardSubtitle tag="h5" className="card-title fw-bold">

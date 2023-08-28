@@ -22,6 +22,12 @@ export default function PaymentBodyContent(props) {
         break;
     }
   };
+
+  const startDate = new Date(dataOrder?.start_rent_at);
+  const finishDate = new Date(dataOrder?.finish_rent_at);
+
+  const differenceInTime = finishDate.getTime() - startDate.getTime();
+  const differenceInDays = differenceInTime / (1000 * 3600 * 24);
   return (
     <Container className="detail-order-body">
       <Row className="d-flex justify-content-center gap-5">
@@ -80,10 +86,7 @@ export default function PaymentBodyContent(props) {
             <ul className="d-flex justify-content-between" style={{ paddingLeft: '1.3rem' }}>
               <li style={{ fontSize: '14px' }}>
                 Sewa Mobil {formatToIDR(Number(dataOrder?.Car?.price))} x{' '}
-                {Number(dataOrder?.finish_rent_at.slice(8, 10)) -
-                  Number(dataOrder?.start_rent_at.slice(8, 10)) +
-                  1 +
-                  ' hari'}
+                {differenceInDays + 1 + ' hari'}
               </li>
               <p style={{ fontSize: '14px' }}>{formatToIDR(Number(dataOrder?.total_price))}</p>
             </ul>

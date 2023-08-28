@@ -13,7 +13,7 @@ export const API = {
       throw error.response;
     }
   },
-  post: async function (endPoint, param) {
+  post: async function (endPoint, param, token) {
     try {
       const response = await axios.post(
         'https://api-car-rental.binaracademy.org/' + endPoint,
@@ -21,6 +21,7 @@ export const API = {
         {
           headers: {
             'Content-Type': 'application/json',
+            access_token: token,
           },
         },
       );
