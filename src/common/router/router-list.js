@@ -7,6 +7,9 @@ import LoginAdmin from 'src/module/admin/login';
 import Payment from 'src/module/payment';
 import PaymentDetail from 'src/module/payment/pages/PaymentDetail';
 import Etiket from 'src/module/etiket';
+import Dashboard from 'src/module/admin/Dashboard';
+import ListCar from 'src/module/admin/ListCar';
+import AddCar from 'src/module/admin/components/AddCar';
 
 const routerList = createBrowserRouter([
   {
@@ -40,6 +43,18 @@ const routerList = createBrowserRouter([
   {
     path: 'e-ticket',
     element: <Etiket />,
+  },
+  {
+    path: 'admin',
+    element: <Dashboard />,
+  },
+  {
+    path: 'admin/list-car',
+    element: <ListCar />,
+  },
+  {
+    path: 'admin/add-car/:id?',
+    element: <AddCar />,
   },
 ]);
 

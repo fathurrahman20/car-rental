@@ -50,7 +50,6 @@ const DateRangeExample = ({ date, setDate }) => {
               showDateDisplay={true}
               showSelectionPreview={true}
               minDate={addDays(new Date(), 0)}
-              // maxDate={addDays(new Date(), 6)}
               rangeColors={['#35B0A7']}
             />
             <Button

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Col, Container, Row } from 'reactstrap';
 
 export default function Banner() {
@@ -11,9 +12,9 @@ export default function Banner() {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna aliqua.
             </p>
-            <a href="/cart" className="banner-btn">
+            <Link to="/cart" className="banner-btn">
               Mulai Sewa Mobil
-            </a>
+            </Link>
           </Col>
         </Row>
       </Container>
