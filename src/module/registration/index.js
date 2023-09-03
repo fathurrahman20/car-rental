@@ -13,7 +13,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { connect } from 'react-redux';
-import { postToAPIRegister, setForm } from '../../common/redux/actions/user';
+import { postToAPIRegister, setForm } from 'src/common/redux/actions/user';
 import { toast } from 'react-toastify';
 
 function SignUp(props) {

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { Button, Col, Container, Form, FormGroup, Input, Label, Row } from 'reactstrap';
 import { connect } from 'react-redux';
-import { postToAPILoginAdmin, setForm } from '../../../common/redux/actions/user';
+import { postToAPILoginAdmin, setForm } from 'src/common/redux/actions/user';
 
 function LoginAdmin(props) {
   const [showPassword, setShowPassword] = useState(false);

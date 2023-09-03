@@ -3,7 +3,6 @@ import LayoutAdmin from 'src/components/layoutAdmin/layoutAdmin';
 import { useMatches, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import Breadcrumb from './Breadcrumb';
 import { API } from 'src/common/API';
@@ -19,7 +18,6 @@ function AddCar(props) {
   const [isUpdate, setIsUpdate] = useState(false);
   const navigate = useNavigate();
   let matches = useMatches();
-  const tokenAdmin = localStorage.getItem('tokenAdmin');
 
   useEffect(() => {
     const tokenAdmin = localStorage.getItem('tokenAdmin');
@@ -27,29 +25,24 @@ function AddCar(props) {
     const id = matches[0].params.id;
     if (id) {
       setIsUpdate(true);
-      getById(`admin/car/${id}`, tokenAdmin);
+      getById(`admin/car/${id}`);
     }
   }, [matches, navigate]);
 
-  async function getById(endPoint, tokenAdmin) {
-    let headers = {};
-    headers.Access_token = tokenAdmin;
-    try {
-      const response = await axios.get('https://api-car-rental.binaracademy.org/' + endPoint, {
-        headers,
-      });
-      const data = response.data;
-      setName(data.name);
-      setPrice(data.price);
-      setImage(data.image);
-      setImagePreview(data.image);
-      setCategory({
-        value: data.category,
-        label: data.category,
-      });
-    } catch (error) {
-      throw error.response;
-    }
+  async function getById(endPoint) {
+    API.get(endPoint)
+      .then(res => {
+        const data = res.data;
+        setName(data.name);
+        setPrice(data.price);
+        setImage(data.image);
+        setImagePreview(data.image);
+        setCategory({
+          value: data.category,
+          label: data.category,
+        });
+      })
+      .catch(e => toast.error(e));
   }
 
   const options = [
@@ -88,10 +81,12 @@ function AddCar(props) {
   }
 
   function handleAdd(url, data) {
-    return API.post(url, data, tokenAdmin)
-      .then(() => {
-        toast.success('Data berhasil ditambahkan');
-        navigate('/admin/list-car');
+    return API.post(url, data)
+      .then(response => {
+        if (response.status === 201) {
+          toast.success('Data berhasil ditambahkan');
+          navigate('/admin/list-car');
+        }
       })
       .catch(err => toast.error(err));
   }

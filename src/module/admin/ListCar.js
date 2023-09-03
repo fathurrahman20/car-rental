@@ -14,7 +14,7 @@ import {
 import { connect } from 'react-redux';
 
 function ListCar(props) {
-  const [button, setButton] = useState({
+  const [isButton, setIsButton] = useState({
     all: false,
     small: false,
     medium: false,
@@ -29,7 +29,7 @@ function ListCar(props) {
   }
   function handleAllButton() {
     props.fetchAllData();
-    setButton({
+    setIsButton({
       all: true,
       small: false,
       medium: false,
@@ -39,7 +39,7 @@ function ListCar(props) {
 
   function handleSmallButton() {
     props.fetchSmallData();
-    setButton({
+    setIsButton({
       all: false,
       small: true,
       medium: false,
@@ -49,7 +49,7 @@ function ListCar(props) {
 
   function handleMediumButton() {
     props.fetchMediumData();
-    setButton({
+    setIsButton({
       all: false,
       small: false,
       medium: true,
@@ -59,7 +59,7 @@ function ListCar(props) {
 
   function handleLargeButton() {
     props.fetchLargeData();
-    setButton({
+    setIsButton({
       all: false,
       small: false,
       medium: false,
@@ -69,7 +69,7 @@ function ListCar(props) {
 
   useEffect(() => {
     props.fetchAllData();
-    setButton({
+    setIsButton({
       all: true,
       small: false,
       medium: false,
@@ -91,28 +91,28 @@ function ListCar(props) {
                     <button
                       id="all"
                       onClick={handleAllButton}
-                      className={`button ${button.all ? 'button-aktif' : ''}`}
+                      className={`button ${isButton.all ? 'button-aktif' : ''}`}
                     >
                       All
                     </button>
                     <button
                       id="small"
                       onClick={handleSmallButton}
-                      className={`button ${button.small ? 'button-aktif' : ''}`}
+                      className={`button ${isButton.small ? 'button-aktif' : ''}`}
                     >
                       2 - 4 people
                     </button>
                     <button
                       id="medium"
                       onClick={handleMediumButton}
-                      className={`button ${button.medium ? 'button-aktif' : ''}`}
+                      className={`button ${isButton.medium ? 'button-aktif' : ''}`}
                     >
                       4 - 6 people
                     </button>
                     <button
                       id="large"
                       onClick={handleLargeButton}
-                      className={`button ${button.large ? 'button-aktif' : ''}`}
+                      className={`button ${isButton.large ? 'button-aktif' : ''}`}
                     >
                       6 - 8 people
                     </button>
@@ -131,17 +131,20 @@ function ListCar(props) {
 
             <Container className="mt-5">
               <Row className="mx-auto justify-content-center">
+                {isButton.all && props.dataCarAdmin.allData === null && (
+                  <h1 className="text-center">Loading...</h1>
+                )}
                 {props.dataCarAdmin?.allData?.map(car => {
-                  return <CarList car={car} key={car.id} button={button} />;
+                  return <CarList car={car} key={car.id} isButton={isButton} />;
                 }) ||
                   props.dataCarAdmin?.smallData?.map(car => {
-                    return <CarList car={car} key={car.id} button={button} />;
+                    return <CarList car={car} key={car.id} isButton={isButton} />;
                   }) ||
                   props.dataCarAdmin?.mediumData?.map(car => {
-                    return <CarList car={car} key={car.id} button={button} />;
+                    return <CarList car={car} key={car.id} isButton={isButton} />;
                   }) ||
                   props.dataCarAdmin?.largeData?.map(car => {
-                    return <CarList car={car} key={car.id} button={button} />;
+                    return <CarList car={car} key={car.id} isButton={isButton} />;
                   })}
               </Row>
             </Container>

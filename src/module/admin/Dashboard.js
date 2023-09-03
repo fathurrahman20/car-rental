@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 export default function Dashboard() {
   const navigate = useNavigate();
   const [items, setItems] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
+  const [limit, setLimit] = useState(10);
 
   const formatToIDR = idr => {
     const parsed = idr.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
@@ -18,10 +19,7 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
-    API.get(
-      'admin/v2/order?sort=created_at%3Aasc&page=1&pageSize=5650',
-      localStorage.getItem('tokenAdmin'),
-    )
+    API.get('admin/v2/order?sort=created_at%3Aasc&page=1&pageSize=5650')
       .then(res => {
         setItems(res.data.orders);
       })
@@ -49,15 +47,17 @@ export default function Dashboard() {
             {currentItems &&
               currentItems.map(item => (
                 <tr key={item.id}>
-                  <th className="text-center" scope="row">
-                    {item.id - 1}
+                  <th className="text-center" scope="row" key={item.id}>
+                    {item.id ? item.id - 1 : 'load'}
                   </th>
-                  <th>{item.User?.email}</th>
-                  <th>{item.Car?.name || '-'}</th>
-                  <th>{item?.start_rent_at?.slice(0, 10)}</th>
-                  <th>{item?.finish_rent_at?.slice(0, 10)}</th>
-                  <th>{formatToIDR(Number(item.total_price))}</th>
-                  <th>{item.Car?.category || '-'}</th>
+                  <th key={item.id}>{item.User?.email || 'loading...'}</th>
+                  <th key={item.id}>{item.Car?.name || '-'}</th>
+                  <th key={item.id}>{item?.start_rent_at?.slice(0, 10) || 'loading...'}</th>
+                  <th key={item.id}>{item?.finish_rent_at?.slice(0, 10) || 'loading...'}</th>
+                  <th key={item.id}>
+                    {item.total_price ? formatToIDR(Number(item.total_price)) : 'loading...'}
+                  </th>
+                  <th key={item.id}>{item.Car?.category || '-'}</th>
                 </tr>
               ))}
           </tbody>
@@ -103,11 +103,12 @@ export default function Dashboard() {
                       name="select"
                       type="select"
                       style={{
-                        width: '60px',
+                        width: '65px',
                         height: '42px',
                         marginTop: '-3px',
                         borderRadius: '2px',
                       }}
+                      onChange={e => setLimit(e.target.value)}
                     >
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -205,16 +206,15 @@ export default function Dashboard() {
   useEffect(() => {
     const tokenAdmin = localStorage.getItem('tokenAdmin');
     if (!tokenAdmin) {
-      toast.error('Silakan login terlebih dahulu');
-      navigate('admin/login');
+      navigate('/admin/login');
     }
-  }, [navigate]);
+  }, []);
 
   return (
     <LayoutAdmin>
       <div style={{ background: '#f4f5f7' }}>
         <ChartSection />
-        <PaginatedItems itemsPerPage={10} />
+        <PaginatedItems itemsPerPage={limit} />
       </div>
     </LayoutAdmin>
   );

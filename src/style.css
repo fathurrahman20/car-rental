@@ -463,6 +463,10 @@ img {
   margin-left: 0.7rem;
   transform: rotate(180deg);
 }
+.left-button,
+.right-button:hover {
+  cursor: pointer;
+}
 
 @media screen and (max-width: 576px) {
   .testimonial-card {
@@ -1302,4 +1306,9 @@ img[src*='/img/no-image.png'] {
   color: #fff !important;
   background-color: #0d28a6 !important;
   border-radius: 2px !important;
+}
+
+/* Payment */
+.upload-bukti:hover {
+  cursor: pointer;
 }

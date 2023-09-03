@@ -1,6 +1,28 @@
+import { useState } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 
 export default function Testimonial() {
+  const [isNext, setIsNext] = useState(false);
+  const [isPrev, setIsPrev] = useState(false);
+  function handleNext() {
+    setIsNext(true);
+    const container = document.querySelector('.container-testi');
+    container.scrollTo({
+      left: container.scrollLeft + 300,
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
+  function handlePrev() {
+    setIsPrev(true);
+    const container = document.querySelector('.container-testi');
+    container.scrollTo({
+      left: container.scrollLeft - 300,
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
+  console.log(isNext, isPrev);
   return (
     <section id="testimonial" className="hidden">
       <Container fluid className="container-fluid">
@@ -10,8 +32,8 @@ export default function Testimonial() {
             <p className="testimonial-text">Berbagai review positif dari pelanggan kami</p>
           </Col>
         </Row>
-        <Row className="row">
-          <div className="wrapper-testimonial mt-4">
+        <Row className="row ">
+          <div className="wrapper-testimonial mt-4 container-testi">
             <TestimonialContent
               text="“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod”"
               detail="john dee 32, bromo"
@@ -28,8 +50,18 @@ export default function Testimonial() {
         </Row>
         <Row className="row testimonial-btn justify-content-center">
           <Col md={12} className="col-md-12 text-center">
-            <img src="/img/Left button.svg" className="left-button" alt="left-button" srcSet="" />
-            <img src="/img/Left button.svg" className="rigth-button" alt="right-button" srcSet="" />
+            <img
+              src="/img/Left button.svg"
+              className="left-button"
+              alt="left-button"
+              onClick={handlePrev}
+            />
+            <img
+              src="/img/Left button.svg"
+              className="right-button"
+              alt="right-button"
+              onClick={handleNext}
+            />
           </Col>
         </Row>
       </Container>

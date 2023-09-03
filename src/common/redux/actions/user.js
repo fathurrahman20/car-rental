@@ -1,4 +1,4 @@
-import { API } from '../../API';
+import { API } from 'src/common/API';
 import * as actionType from '../actionsType/user';
 import { toast } from 'react-toastify';
 
@@ -61,6 +61,7 @@ export const postToAPILoginAdmin = data => async () => {
       if (response.data.role === 'Admin' && response.status === 201) {
         localStorage.setItem('tokenAdmin', response.data.access_token);
         toast.success('Login berhasil');
+        window.location.assign('/admin');
       }
     })
     .catch(e => {

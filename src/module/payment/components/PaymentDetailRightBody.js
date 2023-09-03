@@ -151,7 +151,7 @@ function Previews() {
           <div {...getRootProps({ className: 'dropzone' })}>
             <input {...getInputProps()} />
             <img
-              className="position-absolute top-50 start-50 translate-middle"
+              className="position-absolute upload-bukti top-50 start-50 translate-middle"
               style={{ width: '10%' }}
               src="/img/fi_upload.svg"
               alt="upload bukti bayar"

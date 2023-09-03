@@ -1,5 +1,5 @@
 import DateRangeExample from './DateRange';
-import { API } from '../../../common/API';
+import { API } from 'src/common/API';
 import { useNavigate } from 'react-router-dom';
 import { addDays, format } from 'date-fns';
 import { useState } from 'react';
@@ -62,7 +62,7 @@ export default function CardDetail({ detailData }) {
     }
 
     if (differenceInDays < 7) {
-      API.post('customer/order', dataUser, token)
+      API.post('customer/order', dataUser)
         .then(response => {
           if (response.status === 201) {
             navigate(`payment/${response.data.id}`);

@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { API } from '../../../common/API';
+import { API } from 'src/common/API';
 import { Button, Card, CardBody, CardSubtitle, CardText, CardTitle, Col } from 'reactstrap';
 
 export default function ListCard({ id, name, image, price, setIsClick, setDetailData }) {

@@ -20,7 +20,9 @@ export default function Search() {
       />
 
       {isLoading ? (
-        <h1>Loading...</h1>
+        <h1 className="text-center" style={{ marginBottom: '130px' }}>
+          Loading...
+        </h1>
       ) : !isClick ? (
         <section id="cardResult">
           <Container className="container">

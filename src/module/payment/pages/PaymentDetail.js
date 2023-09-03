@@ -23,8 +23,7 @@ export default function PaymentDetail() {
     if (!tokenCustomer) return navigate('/');
     function getOrderById() {
       const id = matches[0].params.id;
-      const tokenCustomer = localStorage.getItem('tokenCustomer');
-      API.get(`customer/order/${id}`, tokenCustomer)
+      API.get(`customer/order/${id}`)
         .then(res => {
           const data = res.data;
           setDataOrder(data);

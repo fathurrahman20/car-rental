@@ -24,7 +24,7 @@ import {
 import { connect } from 'react-redux';
 
 function CarList(props, args) {
-  const { car, button } = props;
+  const { car, isButton } = props;
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
   const navigate = useNavigate();
@@ -67,16 +67,16 @@ function CarList(props, args) {
     toggle();
     await API.delete(`admin/car/${id}`)
       .then(() => {
-        if (button.all) {
+        if (isButton.all) {
           props.fetchAllData();
         }
-        if (button.small) {
+        if (isButton.small) {
           props.fetchSmallData();
         }
-        if (button.medium) {
+        if (isButton.medium) {
           props.fetchMediumData();
         }
-        if (button.large) {
+        if (isButton.large) {
           props.fetchLargeData();
         }
         toast.success(`Mobil ${name} berhasil dihapus dari daftar`);
@@ -93,7 +93,12 @@ function CarList(props, args) {
         }}
       >
         <div className="car-img-wrapper" style={{ width: 'auto', height: '10rem' }}>
-          <img alt={car.name} src={car?.image} style={{ width: '100%', objectFit: 'cover' }} />
+          <img
+            alt={car.name}
+            src={car.image || '/img/loading.png'}
+            style={{ width: '100%', objectFit: 'cover' }}
+            loading="lazy"
+          />
         </div>
         <CardBody>
           <CardTitle tag="h5">{car.name}</CardTitle>

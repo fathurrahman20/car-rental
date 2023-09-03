@@ -50,10 +50,7 @@ export default function ChartSection() {
   };
 
   useEffect(() => {
-    API.get(
-      'admin/order/reports?from=2022-01-01&until=2022-01-31',
-      localStorage.getItem('tokenAdmin'),
-    )
+    API.get('admin/order/reports?from=2022-01-01&until=2022-01-31')
       .then(res => setDataChart(res.data))
       .catch(e => toast.error(e));
   }, []);

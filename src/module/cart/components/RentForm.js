@@ -1,5 +1,5 @@
 import { Button, Col, Container, FormGroup, Input, Label, Row, Form } from 'reactstrap';
-import { API } from '../../../common/API';
+import { API } from 'src/common/API';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 

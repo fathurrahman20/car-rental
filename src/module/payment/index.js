@@ -1,8 +1,8 @@
-import Header from '../../components/navbar';
-import Footer from '../../components/footer';
+import Header from 'src/components/navbar';
+import Footer from 'src/components/footer';
 import { Navigate, useMatches, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { API } from '../../common/API';
+import { API } from 'src/common/API';
 import BreadcrumbComp from './components/BreadcrumbComp';
 import PaymentTopContent from './components/PaymentTopContent';
 import PaymentBodyContent from './components/PaymentBodyContent';
@@ -24,8 +24,7 @@ export default function Payment() {
     if (!tokenCustomer) return navigate('/');
     function getOrderById() {
       const id = matches[0].params.id;
-      const tokenCustomer = localStorage.getItem('tokenCustomer');
-      API.get(`customer/order/${id}`, tokenCustomer)
+      API.get(`customer/order/${id}`)
         .then(res => {
           const data = res.data;
           setDataOrder(data);

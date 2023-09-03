@@ -13,7 +13,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { connect } from 'react-redux';
-import { postToAPILogin, setForm } from '../../common/redux/actions/user';
+import { postToAPILogin, setForm } from 'src/common/redux/actions/user';
 
 function SignIn(props) {
   const [showPassword, setShowPassword] = useState(false);

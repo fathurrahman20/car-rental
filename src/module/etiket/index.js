@@ -1,7 +1,7 @@
 import { pdfjs } from 'react-pdf';
-import Navbar from '../../components/navbar';
+import Navbar from 'src/components/navbar';
 import { Container, Row, Col, Card, CardBody } from 'reactstrap';
-import Footer from '../../components/footer';
+import Footer from 'src/components/footer';
 import { Button } from 'reactstrap';
 import { Worker, Viewer } from '@react-pdf-viewer/core';
 

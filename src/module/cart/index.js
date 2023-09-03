@@ -1,4 +1,4 @@
-import Layout from '../../components/layout';
+import Layout from 'src/components/layout';
 import Hero from './sections/Hero';
 import Search from './sections/Search';
 

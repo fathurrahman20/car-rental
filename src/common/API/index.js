@@ -1,28 +1,53 @@
 import axios from 'axios';
 
 export const API = {
-  get: async function (endPoint, token) {
+  get: async function (endPoint) {
+    const tokenAdmin = localStorage.getItem('tokenAdmin');
+    const tokenCustomer = localStorage.getItem('tokenCustomer');
+    let token = null;
+    const resultToken = endPoint.search('admin');
+    if (resultToken !== -1) {
+      token = tokenAdmin;
+    } else {
+      token = tokenCustomer;
+    }
     let headers = {};
     headers.Access_token = token;
     try {
       const response = await axios.get('https://api-car-rental.binaracademy.org/' + endPoint, {
         headers,
       });
+      console.log('token is: ', token);
       return response;
     } catch (error) {
       throw error.response;
     }
   },
-  post: async function (endPoint, param, token) {
+  post: async function (endPoint, param) {
+    const tokenAdmin = localStorage.getItem('tokenAdmin');
+    const tokenCustomer = localStorage.getItem('tokenCustomer');
+    let token = null;
+    const resultToken = endPoint.search('admin');
+    if (resultToken !== -1) {
+      token = tokenAdmin;
+    } else {
+      token = tokenCustomer;
+    }
+    let auth = endPoint.search('auth');
+    let headers = {
+      'Content-Type': endPoint === 'admin/car' ? 'multipart/form-data' : 'application/json',
+    };
+    if (auth >= 6) {
+      headers.accept = 'application/json';
+    } else {
+      headers.Access_token = token;
+    }
     try {
       const response = await axios.post(
         'https://api-car-rental.binaracademy.org/' + endPoint,
         param,
         {
-          headers: {
-            'Content-Type': endPoint === 'admin/car' ? 'multipart/form-data' : 'application/json',
-            access_token: token,
-          },
+          headers,
         },
       );
       return response;
