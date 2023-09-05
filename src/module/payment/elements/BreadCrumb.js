@@ -4,10 +4,12 @@ export default function BreadCrumb({ no, title }) {
   const matches = useMatches();
   const isFirstPage =
     window.location.pathname === `/cart/payment/${matches[0].params.id}` && no === '1';
-  const isSecondPage =
-    (window.location.pathname === `/cart/payment-detail/${matches[0].params.id}` && no === '2') ||
-    no === '1' ||
-    no === '1';
+  const pageCriteria = {
+    isSecondPage:
+      window.location.pathname === `/cart/payment-detail/${matches[0].params.id}` && no === '2',
+    isNo1: no === '1',
+  };
+  const isSecondPage = pageCriteria.isSecondPage || pageCriteria.isNo1;
   let background = isFirstPage || isSecondPage ? '#0D28A6' : '#fff';
   let color = isFirstPage || isSecondPage ? '#fff' : '#000';
 

@@ -33,22 +33,18 @@ export default function PaymentDetail() {
     getOrderById();
   }, [matches, navigate]);
 
+  const mappingBankName = () => {
+    const title = {
+      bca: 'BCA Transfer',
+      bni: 'BNI Transfer',
+      mandiri: 'Mandiri Transfer',
+    };
+    return title[listBank];
+  };
   return (
     <>
       <Header />
-
-      <BreadcrumbComp
-        title={
-          listBank.bca
-            ? 'BCA Transer'
-            : listBank.bni
-            ? 'BNI Transfer'
-            : listBank.mandiri
-            ? 'Mandiri Transfer'
-            : ''
-        }
-        orderId={'Order Id: ' + matches[0].params.id}
-      />
+      <BreadcrumbComp title={mappingBankName()} orderId={'Order·Id:·' + matches[0].params.id} />
 
       <Container className="my-5 d-flex flex-column flex-md-row gap-5 justify-content-center">
         <PaymentDetailLeftBody listBank={listBank} dataOrder={dataOrder} />
