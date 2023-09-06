@@ -66,20 +66,22 @@ function CarList(props, args) {
     props.fetchDeleteData();
     toggle();
     await API.delete(`admin/car/${id}`)
-      .then(() => {
-        if (isButton.all) {
-          props.fetchAllData();
+      .then(res => {
+        if (res.status === 200) {
+          if (isButton.all) {
+            props.fetchAllData();
+          }
+          if (isButton.small) {
+            props.fetchSmallData();
+          }
+          if (isButton.medium) {
+            props.fetchMediumData();
+          }
+          if (isButton.large) {
+            props.fetchLargeData();
+          }
+          toast.success(`Mobil ${name} berhasil dihapus dari daftar`);
         }
-        if (isButton.small) {
-          props.fetchSmallData();
-        }
-        if (isButton.medium) {
-          props.fetchMediumData();
-        }
-        if (isButton.large) {
-          props.fetchLargeData();
-        }
-        toast.success(`Mobil ${name} berhasil dihapus dari daftar`);
       })
       .catch(e => toast.error(e));
   }

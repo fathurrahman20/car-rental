@@ -1312,3 +1312,7 @@ img[src*='/img/no-image.png'] {
 .upload-bukti:hover {
   cursor: pointer;
 }
+
+.img-copy {
+  cursor: pointer;
+}

@@ -29,7 +29,7 @@ export const getAllData = () => async dispatch => {
     window.location.assign('admin/login');
   }
   try {
-    const response = await API.get('admin/v2/car?page=1&pageSize=30', tokenAdmin);
+    const response = await API.get('admin/v2/car?page=1&pageSize=50', tokenAdmin);
     dispatch(setAllData(response.data.cars));
     dispatch(setSmallData(null));
     dispatch(setMediumData(null));

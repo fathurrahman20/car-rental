@@ -12,10 +12,12 @@ import { connect } from 'react-redux';
 function AddCar(props) {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
-  const [category, setCategory] = useState({ value: null, label: null });
+  const [category, setCategory] = useState({ value: null, label: '--choose category--' });
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [isUpdate, setIsUpdate] = useState(false);
+  const [createdAt, setCreatedAt] = useState();
+  const [updatedAt, setUpdatedAt] = useState();
   const navigate = useNavigate();
   let matches = useMatches();
 
@@ -41,6 +43,8 @@ function AddCar(props) {
           value: data.category,
           label: data.category,
         });
+        setCreatedAt(data.createdAt);
+        setUpdatedAt(data.updatedAt);
       })
       .catch(e => toast.error(e));
   }
@@ -59,7 +63,7 @@ function AddCar(props) {
     const data = new FormData();
     data.append('name', name);
     data.append('category', category.value);
-    data.append('price', price);
+    data.append('price', price.split('.').join('').split('Rp').join(''));
     data.append('image', image);
 
     handleAction(data);
@@ -71,16 +75,19 @@ function AddCar(props) {
     isUpdate ? handleEdit(`admin/car/${id}`, data) : handleAdd(`admin/car`, data);
   }
 
-  function handleEdit(url, data) {
+  async function handleEdit(url, data) {
     return API.put(url, data)
-      .then(() => {
-        toast.success('Data berhasil diubah');
-        navigate('/admin/list-car');
+      .then(response => {
+        if (response.status === 200) {
+          toast.success('Data berhasil diubah');
+          navigate('/admin/list-car');
+        }
       })
       .catch(err => toast.error(err));
   }
 
-  function handleAdd(url, data) {
+  async function handleAdd(url, data) {
+    if (category.value === null) return toast.error('kategori belum diisi nih :(');
     return API.post(url, data)
       .then(response => {
         if (response.status === 201) {
@@ -97,6 +104,34 @@ function AddCar(props) {
   }
   function handleChange(selectedOption) {
     setCategory(selectedOption);
+  }
+
+  function currencyIdr(angka, prefix) {
+    let numberString = angka?.replace(/[^\d]/g, '').toString();
+    let split = numberString.split(',');
+    let sisa = split[0].length % 3;
+    let rupiah = split[0].substr(0, sisa);
+    let ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+    if (ribuan) {
+      let separator = sisa ? '.' : '';
+      rupiah += separator + ribuan.join('.');
+    }
+    rupiah = split[1] != undefined ? rupiah + '.' + split[1] : rupiah;
+    return prefix == undefined ? rupiah : rupiah ? 'Rp. ' + rupiah : '';
+  }
+
+  function convertDate(data) {
+    const dates = data;
+    const date = dates?.slice(0, 10);
+    const time = dates?.slice(11, 16);
+    const tgl = new Date(date).toLocaleDateString('id-ID', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+    const fulltime = tgl + ', ' + time;
+    return fulltime;
   }
   return (
     <LayoutAdmin>
@@ -143,8 +178,8 @@ function AddCar(props) {
                         id="price"
                         name="price"
                         placeholder="Input Harga Sewa Mobil"
-                        type="number"
-                        value={price}
+                        type="text"
+                        value={currencyIdr(price.toString(), 'Rp ')}
                         onChange={e => setPrice(e.target.value)}
                         required
                       />
@@ -182,7 +217,13 @@ function AddCar(props) {
                       Created at
                     </Label>
                     <Col sm={10}>
-                      <p>-</p>
+                      <Input
+                        id="createdAt"
+                        name="createdAt"
+                        type="text"
+                        value={createdAt ? convertDate(createdAt) : '-'}
+                        disabled
+                      />
                     </Col>
                   </FormGroup>
                   <FormGroup row>
@@ -190,7 +231,13 @@ function AddCar(props) {
                       Updated at
                     </Label>
                     <Col sm={10}>
-                      <p className="p-0 m-0">-</p>
+                      <Input
+                        id="updatedAt"
+                        name="updatedAt"
+                        type="text"
+                        value={updatedAt ? convertDate(updatedAt) : '-'}
+                        disabled
+                      />
                     </Col>
                   </FormGroup>
                 </div>

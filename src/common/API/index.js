@@ -14,7 +14,7 @@ export const API = {
     let headers = {};
     headers.Access_token = token;
     try {
-      const response = await axios.get('https://api-car-rental.binaracademy.org/' + endPoint, {
+      const response = await axios.get(`https://api-car-rental.binaracademy.org/${endPoint}`, {
         headers,
       });
       console.log('token is: ', token);
@@ -44,7 +44,7 @@ export const API = {
     }
     try {
       const response = await axios.post(
-        'https://api-car-rental.binaracademy.org/' + endPoint,
+        `https://api-car-rental.binaracademy.org/${endPoint}`,
         param,
         {
           headers,
@@ -59,7 +59,7 @@ export const API = {
     const tokenAdmin = localStorage.getItem('tokenAdmin');
     try {
       const response = await axios.put(
-        'https://api-car-rental.binaracademy.org/' + endPoint,
+        `https://api-car-rental.binaracademy.org/${endPoint}`,
         param,
         {
           headers: {
@@ -76,7 +76,7 @@ export const API = {
   delete: async function (endPoint) {
     const tokenAdmin = localStorage.getItem('tokenAdmin');
     try {
-      const response = await axios.delete('https://api-car-rental.binaracademy.org/' + endPoint, {
+      const response = await axios.delete(`https://api-car-rental.binaracademy.org/${endPoint}`, {
         headers: {
           'Content-Type': 'application/json',
           access_token: tokenAdmin,

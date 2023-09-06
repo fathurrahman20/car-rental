@@ -49,11 +49,21 @@ export default function ChartSection() {
     ],
   };
 
+  async function getOrder(month) {
+    const bulan = Number(month);
+    try {
+      const res = await API.get(`admin/order/reports?from=2022-${bulan}-01&until=2022-${bulan}-31`);
+      return setDataChart(res.data);
+    } catch (e) {
+      return toast.error(e);
+    }
+  }
+
   useEffect(() => {
-    API.get('admin/order/reports?from=2022-01-01&until=2022-01-31')
-      .then(res => setDataChart(res.data))
-      .catch(e => toast.error(e));
+    getOrder('01');
   }, []);
+
+  console.log('Data Chart: ', dataChart);
   return (
     <>
       <div className="mb-5" style={{ marginLeft: '30px', paddingTop: '32px' }}>

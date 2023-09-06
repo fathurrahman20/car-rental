@@ -81,7 +81,7 @@ export default function PaymentDetailLeftBody({ listBank, dataOrder }) {
             <p className="m-0 p-0" style={{ fontSize: '12px' }}>
               1234567890
             </p>
-            <img src="/img/fi_copy.svg" alt="copy" />
+            <img className="img-copy" src="/img/fi_copy.svg" alt="copy" />
           </div>
         </div>
 
@@ -96,7 +96,7 @@ export default function PaymentDetailLeftBody({ listBank, dataOrder }) {
             <p className="m-0 p-0" style={{ fontSize: '12px' }}>
               {formatToIDR(Number(dataOrder?.total_price))}
             </p>
-            <img src="/img/fi_copy.svg" alt="copy" />
+            <img className="img-copy" src="/img/fi_copy.svg" alt="copy" />
           </div>
         </div>
       </Col>
