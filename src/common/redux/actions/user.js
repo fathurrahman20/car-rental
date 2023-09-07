@@ -36,8 +36,11 @@ export const postToAPILogin = data => async () => {
 
   await API.post('customer/auth/login', dataUser)
     .then(response => {
-      localStorage.setItem('tokenCustomer', response.data.access_token);
-      if (response.status === 201) {
+      if (response.status === 201 && response.data.role === 'Admin') {
+        return toast.error('Hanya customer yang bisa login');
+      }
+      if (response.status === 201 && response.data.role === 'Customer') {
+        localStorage.setItem('tokenCustomer', response.data.access_token);
         toast.success('Login Berhasil');
         setTimeout(() => {
           window.location.assign('/');
@@ -57,8 +60,9 @@ export const postToAPILoginAdmin = data => async () => {
 
   await API.post('admin/auth/login', dataUser)
     .then(response => {
-      if (response.data.role !== 'Admin') toast.error('Hanya admin yang bisa login');
-      if (response.data.role === 'Admin' && response.status === 201) {
+      if (response.status === 201 && response.data.role !== 'Admin')
+        toast.error('Hanya admin yang bisa login');
+      if (response.status === 201 && response.data.role === 'Admin') {
         localStorage.setItem('tokenAdmin', response.data.access_token);
         toast.success('Login berhasil');
         window.location.assign('/admin');
