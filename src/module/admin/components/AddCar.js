@@ -63,7 +63,7 @@ function AddCar(props) {
     const data = new FormData();
     data.append('name', name);
     data.append('category', category.value);
-    data.append('price', price.split('.').join('').split('Rp').join(''));
+    data.append('price', price.toString().split('.').join('').split('Rp').join(''));
     data.append('image', image);
 
     handleAction(data);
