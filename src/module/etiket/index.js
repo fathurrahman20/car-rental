@@ -7,6 +7,7 @@ import { Worker, Viewer } from '@react-pdf-viewer/core';
 
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
@@ -19,6 +20,10 @@ export default function Etiket() {
     link.download = 'ticket.pdf';
     link.click();
   };
+
+  useEffect(() => {
+    if (!localStorage.getItem('tokenCustomer')) navigate('/login');
+  }, []);
 
   return (
     <>
