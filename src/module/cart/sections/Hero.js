@@ -15,7 +15,7 @@ export default function Hero() {
             </p>
           </Col>
           <Col md={6} className="col-md-6 m-0 p-0">
-            <img src="/img/car-banner.png" alt="Car Banner" />
+            <img src="/img/car-banner.webp" alt="Car Banner" />
           </Col>
         </Row>
       </Container>
