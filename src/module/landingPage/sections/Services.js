@@ -6,7 +6,7 @@ export default function Services() {
       <Container className="container">
         <Row className="row">
           <Col md={6} className="col-md-6 services-image align-self-center">
-            <img src="/img/img_service.png" alt="service" className="w-100" />
+            <img src="/img/img_service.webp" alt="service" className="w-100" />
           </Col>
           <Col md={6} className="col-md-6 ps-md-5 services-detail">
             <h4 className="services-title">Best Car Rental for any kind of trip in (Bekasi)!</h4>
