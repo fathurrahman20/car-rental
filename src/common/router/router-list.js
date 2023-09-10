@@ -10,11 +10,13 @@ import Etiket from 'src/module/etiket';
 import Dashboard from 'src/module/admin/Dashboard';
 import ListCar from 'src/module/admin/ListCar';
 import AddCar from 'src/module/admin/components/AddCar';
+import ErrorPage from 'src/module/error/';
 
 const routerList = createBrowserRouter([
   {
     path: '/',
     element: <LandingPage />,
+    errorElement: <ErrorPage />,
   },
   {
     path: 'cart',

@@ -1316,3 +1316,48 @@ img[src*='/img/no-image.png'] {
 .img-copy {
   cursor: pointer;
 }
+
+/* Error Page */
+.error-title {
+  font-size: 150px;
+  color: #0d28a8;
+  text-shadow:
+    1px 1px 1px #051d94,
+    2px 2px 1px #051d94,
+    3px 3px 1px #051d94,
+    4px 4px 1px #051d94,
+    5px 5px 1px #051d94,
+    6px 6px 1px #051d94,
+    7px 7px 1px #051d94,
+    8px 8px 1px #051d94,
+    25px 25px 8px rgba(0, 0, 0, 0.2);
+}
+
+.error-description {
+  margin: 2rem 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #444;
+}
+
+.error-btn {
+  display: inline-block;
+  border: 2px solid #222;
+  color: #222;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 0.75rem 1rem 0.6rem;
+  transition: all 0.2s linear;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+}
+
+.error-btn:hover {
+  background: #222;
+  color: #ddd;
+  cursor: pointer;
+}
+
+.error-container {
+  margin-top: 10%;
+}
