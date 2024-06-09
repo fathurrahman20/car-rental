@@ -62,8 +62,8 @@ export default function Header() {
             </Button>
           ) : (
             <>
-              <Button className="btn-navbar border-0" onClick={() => navigate('/register')}>
-                Register
+              <Button className="btn-navbar border-0" onClick={() => navigate('/login')}>
+                Login
               </Button>
               <Button className="btn-navbar border-0" onClick={() => navigate('/admin')}>
                 Admin
@@ -96,8 +96,8 @@ export default function Header() {
               ) : (
                 <>
                   <li className="mt-2" style={{ marginLeft: '-32px' }}>
-                    <Button className="btn-navbar border-0" onClick={() => navigate('/register')}>
-                      Register
+                    <Button className="btn-navbar border-0" onClick={() => navigate('/login')}>
+                      Login
                     </Button>
                   </li>
                   <li className="mt-3" style={{ marginLeft: '-32px' }}>
